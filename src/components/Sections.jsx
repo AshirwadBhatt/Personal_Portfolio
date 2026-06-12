@@ -70,7 +70,7 @@ export function About() {
               { label: 'INTERNSHIPS', val: 4,  max: 4,   color: 'var(--green)' },
               { label: 'PROJECTS',    val: 5,  max: 6,   color: 'var(--blue-bright)' },
               { label: 'CERTS',       val: 6,  max: 6,   color: 'var(--blue-dim)' },
-              { label: 'EXPERIENCE',  val: 2,  max: 4,   color: 'var(--green-dim)' },
+              { label: 'YRS_ACTIVE',  val: 2,  max: 2,   color: 'var(--green-dim)' },
             ].map(r => (
               <div key={r.label} style={{ marginBottom: 10 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, marginBottom: 4, color: 'var(--text-muted)' }}>
@@ -91,7 +91,7 @@ export function About() {
           {/* location + status */}
           <div className="terminal-well" style={{ padding: '16px 20px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             {[
-              { label: 'LOCATION',  val: 'Gujarat / Mumbai', color: 'var(--text)' },
+              { label: 'LOCATION',  val: 'Mumbai, Maharashtra', color: 'var(--text)' },
               { label: 'STATUS',    val: 'OPEN_TO_WORK ✓',   color: 'var(--green)' },
               { label: 'GRAD',      val: 'JUN 2026',          color: 'var(--blue-bright)' },
               { label: 'CGPA',      val: '7.46 / 10.0',       color: 'var(--text)' },
@@ -445,7 +445,7 @@ export function Contact() {
           {[
             { label: 'EMAIL', val: 'ashirwadbhatt73@gmail.com', href: 'mailto:ashirwadbhatt73@gmail.com', color: 'var(--green)' },
             { label: 'GITHUB', val: 'github.com/AshirwadBhatt', href: 'https://github.com/AshirwadBhatt', color: 'var(--blue-bright)' },
-            { label: 'LOCATION', val: 'Gujarat / Mumbai, India', href: null, color: 'var(--text)' },
+            { label: 'LOCATION', val: 'Mumbai, Maharashtra, India', href: null, color: 'var(--text)' },
           ].map(item => (
             <div key={item.label} style={{ display: 'flex', gap: 12, marginBottom: 16, alignItems: 'center' }}>
               <div style={{

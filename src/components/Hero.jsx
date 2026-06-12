@@ -121,7 +121,7 @@ export default function Hero({ active }) {
       }} className="hud-corner">
         <div>X: {String(coords.x).padStart(4,'0')} Y: {String(coords.y).padStart(4,'0')}</div>
         <div style={{ color: 'var(--green)' }}>STATUS: ONLINE</div>
-        <div>LOC: 23.02°N 72.57°E</div>
+        <div>LOC: 19.07°N 72.87°E</div>
       </div>
 
       {/* main content */}
