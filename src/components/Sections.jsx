@@ -130,17 +130,18 @@ export function Skills() {
               <span style={{ textShadow: `0 0 6px ${s.color}` }}>⬡</span>
               {s.category}
             </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 7 }}>
               {s.items.map(item => (
-                <span key={item} style={{
-                  fontSize: 10, padding: '3px 8px',
-                  border: `1px solid ${s.color}22`,
-                  color: 'var(--text-dim)',
-                  background: `${s.color}08`,
-                  letterSpacing: '0.05em',
-                }}>{item}</span>
+                <li key={item} style={{
+                  display: 'flex', alignItems: 'center', gap: 8,
+                  fontSize: 12, color: 'var(--text-dim)',
+                  letterSpacing: '0.03em',
+                }}>
+                  <span style={{ color: s.color, fontSize: 10, flexShrink: 0 }}>▸</span>
+                  {item}
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         ))}
       </div>
