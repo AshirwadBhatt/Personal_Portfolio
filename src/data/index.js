@@ -78,9 +78,10 @@ export const EXPERIENCE = [
     project: 'Soberly — iOS sobriety-tracking application',
     bullets: [
       'Authored 80+ automated test cases in TypeScript for iOS app Soberly, raising test coverage by ~35% and halving manual regression time across release cycles.',
-      'Performed API testing, defect verification, and bug tracking across agile sprints; identified and resolved critical auth-flow regressions before production releases.',
+      'Built and maintained end-to-end test suites covering authentication flows, streak tracking, notification triggers, and in-app purchase validation — ensuring zero regression across 3 major app releases.',
+      'Performed API testing, defect verification, and bug tracking within 2-week agile sprints; documented and triaged 30+ bugs with reproduction steps, severity ratings, and fix verification.',
     ],
-    tags: ['TypeScript', 'API Testing', 'Agile', 'iOS', 'QA'],
+    tags: ['TypeScript', 'API Testing', 'Agile', 'iOS', 'QA', 'E2E Testing'],
   },
   {
     id: 'agevole',
@@ -92,10 +93,11 @@ export const EXPERIENCE = [
     statusColor: 'var(--text-muted)',
     project: 'PingMe — Social Interaction Platform',
     bullets: [
-      'Designed JWT auth, session management, and RBAC system for PingMe social platform — securing user roles across 3 permission tiers.',
-      'Hardened backend against all OWASP Top 10 injection vectors (SQLi, XSS, CSRF); containerized with Docker for isolated, versioned deployments across environments.',
+      'Designed JWT auth, session management, and RBAC system for PingMe social platform — securing user roles across 3 permission tiers (admin, moderator, user) with route-level guards.',
+      'Hardened backend against all OWASP Top 10 injection vectors (SQLi, XSS, CSRF, broken auth); implemented input sanitization, parameterized queries, and rate-limiting middleware.',
+      'Containerized the full Node.js + MongoDB stack with Docker Compose for isolated, versioned deployments; wrote environment-specific configs separating dev, staging, and production secrets.',
     ],
-    tags: ['Node.js', 'JWT', 'Docker', 'OWASP', 'RBAC'],
+    tags: ['Node.js', 'JWT', 'Docker', 'OWASP', 'RBAC', 'MongoDB'],
   },
   {
     id: 'cahoot',
@@ -107,10 +109,11 @@ export const EXPERIENCE = [
     statusColor: 'var(--text-muted)',
     project: 'Full-stack e-commerce application',
     bullets: [
-      'Built full-stack e-commerce app with JWT auth and RBAC, deployed on AWS EC2 with S3 asset storage.',
-      'Optimized 3 critical data-processing routines from O(n²) to O(n log n), reducing server response time under peak load.',
+      'Built full-stack e-commerce platform (product catalog, cart, orders, admin dashboard) with JWT auth and role-based access — deployed on AWS EC2 with S3 for static asset storage.',
+      'Optimized 3 critical data-processing routines from O(n²) to O(n log n) using sorting + binary search, reducing API response time by ~70% under high-load product search queries.',
+      'Implemented RESTful APIs with Express.js and integrated a React frontend using component-level state management; followed Git branching strategy with PR reviews across a 4-person team.',
     ],
-    tags: ['React', 'Node.js', 'AWS', 'JWT', 'Git'],
+    tags: ['React', 'Node.js', 'Express', 'AWS EC2', 'S3', 'JWT', 'Git'],
   },
 ]
 
