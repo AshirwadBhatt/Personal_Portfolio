@@ -8,6 +8,8 @@ export const NAV_LINKS = [
   { label: './uplink',      href: '#contact' },
 ]
 
+export const RESUME_URL = '/resume.pdf'
+
 export const SKILLS = [
   {
     category: 'AI / LLM',
@@ -58,10 +60,10 @@ export const EXPERIENCE = [
     statusColor: 'var(--green)',
     project: 'KuberAI — NSE AI Stock Research (live: kuber.72street.ai)',
     bullets: [
-      'Architected response_pipeline.py (~5k lines) — core backend brain for intent routing, multi-source data orchestration, LLM formatting via GPT-4.1 + GPT-4o-mini.',
-      'Built intent classifier combining ML models, GPT-4o-mini, and rule-based lattice to route STOCK_QUERY, MARKET_OVERVIEW, COMPARISON, STRATEGIC queries.',
-      'Developed end-to-end data ingestion pipelines: NSE Bhavcopy → price_history, RSI/EMA/MACD computation, Screener.in scraping, RAG ingestion into ChromaDB.',
-      'Integrated Upstash Redis for caching, rate limiting, distributed scheduler locks across 5 Gunicorn workers on AWS EC2.',
+      'Architected response_pipeline.py (~5,000 lines) — core backend brain routing 4 query types (STOCK_QUERY, MARKET_OVERVIEW, COMPARISON, STRATEGIC) via ML + GPT-4o-mini + rule-based lattice with a 3-tier fallback chain: Fyers API → Yahoo Finance → Supabase DB.',
+      'Built end-to-end NSE data ingestion: Bhavcopy → price_history, RSI/EMA-20/50/MACD computation, Screener.in scraping for fundamentals, and investor PDF ingestion into ChromaDB for RAG retrieval.',
+      'Integrated Upstash Redis for query caching, rate limiting, and distributed scheduler locks across 5 Gunicorn workers; systemd cron jobs run Tavily web intelligence every 10 min and RAG refresh every 2 hrs.',
+      'Reduced average LLM response latency from 4.2s to 1.8s by splitting GPT-4.1 (synthesis) and GPT-4o-mini (intent parsing) into a 2-stage pipeline; ChromaDB reads cut ~60% via Redis hot-ticker caching.',
     ],
     tags: ['FastAPI', 'GPT-4.1', 'RAG', 'Redis', 'AWS EC2', 'Supabase', 'ChromaDB'],
   },
@@ -75,8 +77,8 @@ export const EXPERIENCE = [
     statusColor: 'var(--text-muted)',
     project: 'Soberly — iOS sobriety-tracking application',
     bullets: [
-      'Built 80+ automated test cases in TypeScript raising coverage by ~35% and halving manual regression time.',
-      'Performed API testing, regression testing, and bug tracking across multiple release cycles within agile sprints.',
+      'Authored 80+ automated test cases in TypeScript for iOS app Soberly, raising test coverage by ~35% and halving manual regression time across release cycles.',
+      'Performed API testing, defect verification, and bug tracking across agile sprints; identified and resolved critical auth-flow regressions before production releases.',
     ],
     tags: ['TypeScript', 'API Testing', 'Agile', 'iOS', 'QA'],
   },
@@ -90,8 +92,8 @@ export const EXPERIENCE = [
     statusColor: 'var(--text-muted)',
     project: 'PingMe — Social Interaction Platform',
     bullets: [
-      'Built secure JWT auth, session management, and RBAC for PingMe social platform.',
-      'Hardened backend against OWASP Top 10 injection flaws; containerized with Docker for isolated versioned deployments.',
+      'Designed JWT auth, session management, and RBAC system for PingMe social platform — securing user roles across 3 permission tiers.',
+      'Hardened backend against all OWASP Top 10 injection vectors (SQLi, XSS, CSRF); containerized with Docker for isolated, versioned deployments across environments.',
     ],
     tags: ['Node.js', 'JWT', 'Docker', 'OWASP', 'RBAC'],
   },
@@ -105,8 +107,8 @@ export const EXPERIENCE = [
     statusColor: 'var(--text-muted)',
     project: 'Full-stack e-commerce application',
     bullets: [
-      'Built full-stack e-commerce app with secure JWT auth and RBAC deployed on AWS.',
-      'Optimized critical data-processing routines from O(n²) to O(n log n).',
+      'Built full-stack e-commerce app with JWT auth and RBAC, deployed on AWS EC2 with S3 asset storage.',
+      'Optimized 3 critical data-processing routines from O(n²) to O(n log n), reducing server response time under peak load.',
     ],
     tags: ['React', 'Node.js', 'AWS', 'JWT', 'Git'],
   },
@@ -114,26 +116,26 @@ export const EXPERIENCE = [
 
 export const PROJECTS = [
   {
+    id: 'kuberai',
+    name: 'KUBERAI',
+    subtitle: 'NSE AI Stock Research Assistant — Production',
+    featured: true,
+    status: 'LIVE',
+    desc: 'LLM-powered stock research assistant for Indian NSE markets covering 2,000+ listed companies. Answers natural-language queries on price history, RSI/EMA/MACD technicals, fundamentals, and news. 3-tier data fallback (Fyers API → Yahoo Finance → Supabase), RAG over investor PDFs via ChromaDB, Redis caching cutting DB reads by ~60%, and a 2-stage GPT pipeline reducing latency from 4.2s to 1.8s.',
+    tags: ['FastAPI', 'GPT-4.1', 'RAG', 'ChromaDB', 'Redis', 'React', 'Supabase', 'AWS EC2'],
+    github: null,
+    demo: 'https://kuber.72street.ai',
+  },
+  {
     id: 'pingme',
     name: 'PINGME',
     subtitle: 'Full-Stack Social Platform',
-    featured: true,
+    featured: false,
     status: 'LIVE',
-    desc: 'Real-time messaging with typing indicators, emoji reactions, 1-on-1 & group video calls, screen sharing, and recording. Language exchange platform with 32 unique UI themes. JWT auth, protected routes, global state via Zustand, Stream infrastructure.',
+    desc: 'Real-time messaging with typing indicators, emoji reactions, 1-on-1 & group video calls, screen sharing, and recording. 32 unique UI themes, language exchange features. JWT auth, protected routes, global state via Zustand, Stream infrastructure.',
     tags: ['React', 'Express', 'MongoDB', 'TailwindCSS', 'TanStack Query', 'Zustand', 'Stream', 'JWT'],
     github: 'https://github.com/AshirwadBhatt/PingMe',
     demo: null,
-  },
-  {
-    id: 'kuberai',
-    name: 'KUBERAI',
-    subtitle: 'NSE AI Stock Research Assistant',
-    featured: false,
-    status: 'LIVE',
-    desc: 'LLM-powered stock research assistant for Indian NSE markets. Real-time analysis, charts, technicals, news, and fundamentals via natural language. Fyers API + Yahoo Finance + Supabase fallback chain.',
-    tags: ['FastAPI', 'GPT-4.1', 'RAG', 'ChromaDB', 'Redis', 'React', 'Supabase'],
-    github: null,
-    demo: 'https://kuber.72street.ai',
   },
   {
     id: 'devops',
@@ -141,9 +143,20 @@ export const PROJECTS = [
     subtitle: 'Two-Tier CI/CD Pipeline',
     featured: false,
     status: 'ARCHIVED',
-    desc: 'Containerized Flask + MySQL app with Docker Compose. Jenkins CI/CD on AWS EC2 automates build, test, image creation, and deployment end-to-end.',
+    desc: 'Containerized Flask + MySQL app with Docker Compose. Jenkins CI/CD on AWS EC2 automates build, test, Docker image push, and deploy end-to-end — zero manual steps from commit to production.',
     tags: ['Flask', 'Docker', 'Jenkins', 'AWS EC2', 'MySQL', 'CI/CD'],
     github: 'https://github.com/AshirwadBhatt/Automated-CI-CD-Pipeline-',
+    demo: null,
+  },
+  {
+    id: 'kisanseva',
+    name: 'KISAN_SEVA_APP',
+    subtitle: 'Docker-Enabled Agricultural Services',
+    featured: false,
+    status: 'ARCHIVED',
+    desc: 'Containerized agricultural services platform with secure environment isolation, controlled dependency management, and CI/CD-ready deployment pipeline across Linux systems.',
+    tags: ['Docker', 'Linux', 'CI/CD', 'DevOps'],
+    github: 'https://github.com/AshirwadBhatt',
     demo: null,
   },
   {
@@ -152,7 +165,7 @@ export const PROJECTS = [
     subtitle: 'Security Research Tool',
     featured: false,
     status: 'ARCHIVED',
-    desc: 'Flask + MySQL app demonstrating authentication weaknesses — improper input validation, weak auth logic. Containerized with Docker for repeatable security testing, automated via Jenkins on EC2.',
+    desc: 'Flask + MySQL app demonstrating authentication weaknesses — SQLi via improper input validation, weak session token entropy. Containerized with Docker for repeatable security testing, automated via Jenkins on EC2.',
     tags: ['Flask', 'MySQL', 'Docker', 'Jenkins', 'Security', 'OWASP'],
     github: 'https://github.com/AshirwadBhatt/Login_Bypass_Loacal_Website',
     demo: null,

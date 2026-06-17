@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { NAV_LINKS } from '../data'
+import { NAV_LINKS, RESUME_URL } from '../data'
 
 export default function Nav() {
   const [section, setSection] = useState('~/home')
@@ -76,6 +76,17 @@ export default function Nav() {
             </a>
           ))}
         </nav>
+
+        {/* resume download */}
+        <a href={RESUME_URL} target="_blank" rel="noreferrer"
+           className="desktop-nav"
+           style={{
+             fontSize: 10, fontWeight: 700, letterSpacing: '0.12em',
+             color: 'var(--green)', border: '1px solid var(--green)',
+             padding: '4px 12px', textDecoration: 'none',
+           }}>
+          RESUME↓
+        </a>
 
         {/* right meta */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, fontSize: 10, color: 'var(--text-muted)' }}>

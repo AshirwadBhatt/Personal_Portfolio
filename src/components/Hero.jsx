@@ -157,10 +157,12 @@ export default function Hero({ active }) {
           fontSize: 'clamp(13px, 1.8vw, 15px)',
           color: 'var(--text-dim)',
           lineHeight: 1.8,
-          maxWidth: 560,
+          maxWidth: 580,
         }}>
-          Building production-grade AI systems and full-stack applications at the intersection
-          of intelligence and systems engineering. Final-year B.Tech IT — graduating Jun 2026.
+          Final-year B.Tech IT (graduating Jun 2026) with production experience across
+          <span style={{ color: 'var(--green)' }}> 4 internships</span> — currently building
+          KuberAI, a live LLM-powered stock research platform for <span style={{ color: 'var(--green)' }}>2,000+ NSE stocks</span> at Everisse AI.
+          Strong in <span style={{ color: 'var(--blue-bright)' }}>FastAPI · RAG · Docker · AWS · React</span>.
         </p>
 
         {/* CTA buttons */}
@@ -176,7 +178,7 @@ export default function Hero({ active }) {
           }} className="clip-corner">
             [ VIEW_PROJECTS ]
           </a>
-          <a href="#contact" style={{
+          <a href="/resume.pdf" target="_blank" rel="noreferrer" style={{
             background: 'transparent',
             color: 'var(--green)',
             border: '1px solid var(--green)',
@@ -185,13 +187,24 @@ export default function Hero({ active }) {
             fontWeight: 700, fontSize: 12,
             letterSpacing: '0.1em',
           }}>
-            [ INITIATE_UPLINK ]
+            [ RESUME↓ ]
+          </a>
+          <a href="#contact" style={{
+            background: 'transparent',
+            color: 'var(--blue-bright)',
+            border: '1px solid var(--blue-bright)',
+            padding: '10px 24px',
+            textDecoration: 'none',
+            fontWeight: 700, fontSize: 12,
+            letterSpacing: '0.1em',
+          }}>
+            [ CONTACT ]
           </a>
           <a href="https://github.com/AshirwadBhatt" target="_blank" rel="noreferrer"
              style={{
                background: 'transparent',
-               color: 'var(--blue-bright)',
-               border: '1px solid var(--blue-bright)',
+               color: 'var(--text-muted)',
+               border: '1px solid var(--border)',
                padding: '10px 24px',
                textDecoration: 'none',
                fontWeight: 700, fontSize: 12,
