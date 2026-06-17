@@ -159,7 +159,7 @@ export default function Hero({ active }) {
           lineHeight: 1.8,
           maxWidth: 580,
         }}>
-          Final-year B.Tech IT (graduating Jun 2026) with production experience across
+          B.Tech IT Graduate (CHARUSAT, 2026) with production experience across
           <span style={{ color: 'var(--green)' }}> 4 internships</span> — currently building
           KuberAI, a live LLM-powered stock research platform for <span style={{ color: 'var(--green)' }}>2,000+ NSE stocks</span> at Everisse AI.
           Strong in <span style={{ color: 'var(--blue-bright)' }}>FastAPI · RAG · Docker · AWS · React</span>.

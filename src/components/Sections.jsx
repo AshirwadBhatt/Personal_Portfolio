@@ -46,7 +46,7 @@ export function About() {
             $ cat /etc/ashirwad/bio.txt
           </div>
           <p style={{ fontSize: 13, color: 'var(--text-dim)', lineHeight: 1.8, marginBottom: 12 }}>
-            Final-year B.Tech IT student at <span style={{ color: 'var(--green)' }}>CHARUSAT</span>, graduating Jun 2026.
+            B.Tech IT Graduate at <span style={{ color: 'var(--green)' }}>CHARUSAT</span> (Class of 2026).
             Currently building production AI systems at <span style={{ color: 'var(--green)' }}>Everisse AI, Mumbai</span> —
             specifically KuberAI, a live LLM-powered stock research assistant for NSE markets.
           </p>
@@ -93,7 +93,7 @@ export function About() {
             {[
               { label: 'LOCATION',  val: 'Mumbai, Maharashtra', color: 'var(--text)' },
               { label: 'STATUS',    val: 'OPEN_TO_WORK ✓',   color: 'var(--green)' },
-              { label: 'GRAD',      val: 'JUN 2026',          color: 'var(--blue-bright)' },
+              { label: 'GRAD',      val: 'B.TECH 2026 ✓',      color: 'var(--green)' },
               { label: 'CGPA',      val: '7.46 / 10.0',       color: 'var(--text)' },
             ].map(item => (
               <div key={item.label}>
