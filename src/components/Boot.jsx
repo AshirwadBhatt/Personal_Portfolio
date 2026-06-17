@@ -20,15 +20,15 @@ export default function Boot({ onDone }) {
     let idx = 0
     function next() {
       if (idx >= LOGS.length) {
-        setTimeout(() => { setFading(true); setTimeout(onDone, 700) }, 600)
+        setTimeout(() => { setFading(true); setTimeout(onDone, 700) }, 300)
         return
       }
       setLines(l => [...l, LOGS[idx]])
       setPct(Math.round(((idx + 1) / LOGS.length) * 100))
       idx++
-      setTimeout(next, 250 + Math.random() * 350)
+      setTimeout(next, 100 + Math.random() * 150)
     }
-    setTimeout(next, 200)
+    setTimeout(next, 100)
   }, [onDone])
 
   const s = {
