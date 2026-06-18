@@ -100,132 +100,177 @@ function HeroPhoto() {
       <style>{`
         .hp-wrap {
           flex-shrink: 0;
-          width: clamp(180px, 22vw, 280px);
+          width: clamp(200px, 24vw, 300px);
           display: none;
         }
         @media (min-width: 900px) { .hp-wrap { display: block; } }
 
-        .hp-label {
-          display: flex; justify-content: space-between;
-          font-size: 9px; color: var(--text-muted);
-          letter-spacing: 0.1em; margin-bottom: 6px;
-          font-family: var(--font);
+        /* ── outer container with corner brackets ── */
+        .hp-outer {
+          position: relative;
+          padding: 14px;
+          cursor: crosshair;
         }
-        .hp-label span:first-child { color: var(--green); }
 
+        /* corner bracket decorations */
+        .hp-outer::before, .hp-outer::after,
+        .hp-cb::before, .hp-cb::after {
+          content: '';
+          position: absolute;
+          width: 18px; height: 18px;
+          border-color: var(--green);
+          border-style: solid;
+          transition: width 0.3s, height 0.3s;
+        }
+        .hp-outer:hover::before, .hp-outer:hover::after,
+        .hp-outer:hover .hp-cb::before, .hp-outer:hover .hp-cb::after {
+          width: 26px; height: 26px;
+        }
+        /* top-left */
+        .hp-outer::before { top: 0; left: 0; border-width: 2px 0 0 2px; }
+        /* top-right */
+        .hp-outer::after  { top: 0; right: 0; border-width: 2px 2px 0 0; }
+        /* bottom-left */
+        .hp-cb::before { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+        /* bottom-right */
+        .hp-cb::after  { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+
+        /* ── photo frame ── */
         .hp-frame {
           position: relative; overflow: hidden;
-          border: 1px solid var(--green);
-          clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
-          box-shadow: 0 0 24px rgba(0,255,65,0.18), var(--neu-raised);
-          cursor: crosshair;
+          border: 1px solid rgba(0,255,65,0.35);
+          box-shadow: 0 0 30px rgba(0,255,65,0.12), inset 0 0 20px rgba(0,255,65,0.04);
         }
 
         .hp-img {
           width: 100%; display: block;
-          filter: saturate(0.5) brightness(0.8) contrast(1.05);
-          transition: filter 0.4s ease;
+          filter: saturate(0.3) brightness(0.75) contrast(1.1) sepia(0.2) hue-rotate(80deg);
+          transition: filter 0.5s ease;
         }
-        .hp-frame:hover .hp-img {
-          filter: saturate(0.9) brightness(0.95);
+        .hp-outer:hover .hp-img {
+          filter: saturate(0.85) brightness(0.95) contrast(1.05);
         }
 
-        /* scanlines always on */
+        /* green tint overlay — always visible */
+        .hp-tint {
+          position: absolute; inset: 0; pointer-events: none;
+          background: rgba(0,255,65,0.06);
+          mix-blend-mode: screen;
+          transition: background 0.4s;
+        }
+        .hp-outer:hover .hp-tint { background: rgba(0,255,65,0.02); }
+
+        /* scanlines */
         .hp-scanlines {
           position: absolute; inset: 0; pointer-events: none;
           background: repeating-linear-gradient(
             to bottom,
-            transparent 0px, transparent 3px,
-            rgba(0,0,0,0.18) 3px, rgba(0,0,0,0.18) 4px
+            transparent 0px, transparent 2px,
+            rgba(0,0,0,0.2) 2px, rgba(0,0,0,0.2) 3px
           );
         }
 
-        /* sweep on hover */
+        /* sweep line */
         .hp-sweep {
           position: absolute; inset: 0; pointer-events: none;
           background: linear-gradient(to bottom,
-            transparent 35%,
-            rgba(0,255,65,0.12) 50%,
-            transparent 65%
-          );
+            transparent 40%, rgba(0,255,65,0.15) 50%, transparent 60%);
           transform: translateY(-110%);
         }
-        .hp-frame:hover .hp-sweep {
-          animation: hp-sweep-anim 1.4s linear infinite;
+        .hp-outer:hover .hp-sweep {
+          animation: hp-sweep 1.6s linear infinite;
         }
-        @keyframes hp-sweep-anim {
+        @keyframes hp-sweep {
           from { transform: translateY(-110%); }
           to   { transform: translateY(110%); }
         }
 
         /* glitch layers */
         .hp-g1, .hp-g2 {
-          position: absolute; inset: 0;
-          width: 100%; display: block;
-          pointer-events: none; opacity: 0;
+          position: absolute; inset: 0; width: 100%;
+          display: block; pointer-events: none; opacity: 0;
         }
-        .hp-frame:hover .hp-g1 {
-          animation: hp-g1-anim 0.5s steps(1) infinite;
+        .hp-outer:hover .hp-g1 { animation: hp-g1 0.6s steps(1) infinite; }
+        .hp-outer:hover .hp-g2 { animation: hp-g2 0.6s steps(1) infinite 0.2s; }
+
+        @keyframes hp-g1 {
+          0%  { opacity:0.5; clip-path:inset(12% 0 65% 0); transform:translate(-5px,0); filter:hue-rotate(270deg) brightness(2) saturate(2); }
+          45% { opacity:0.5; clip-path:inset(55% 0 22% 0); transform:translate(5px,0);  filter:hue-rotate(90deg)  brightness(2) saturate(2); }
+          50% { opacity:0; } 100% { opacity:0; }
         }
-        .hp-frame:hover .hp-g2 {
-          animation: hp-g2-anim 0.5s steps(1) infinite 0.15s;
-        }
-        @keyframes hp-g1-anim {
-          0%  { opacity: 0.5; clip-path: inset(15% 0 62% 0); transform: translate(-4px,0); filter: hue-rotate(280deg) brightness(1.8); }
-          49% { opacity: 0.5; clip-path: inset(58% 0 18% 0); transform: translate(4px,0);  filter: hue-rotate(100deg) brightness(1.8); }
-          50% { opacity: 0; }
-          100%{ opacity: 0; }
-        }
-        @keyframes hp-g2-anim {
-          0%  { opacity: 0.4; clip-path: inset(72% 0 8% 0);  transform: translate(3px,0);  filter: hue-rotate(180deg); }
-          49% { opacity: 0.4; clip-path: inset(8%  0 72% 0); transform: translate(-3px,0); filter: hue-rotate(0deg); }
-          50% { opacity: 0; }
-          100%{ opacity: 0; }
+        @keyframes hp-g2 {
+          0%  { opacity:0.35; clip-path:inset(75% 0 5% 0);  transform:translate(3px,0);  filter:hue-rotate(180deg) brightness(1.5); }
+          45% { opacity:0.35; clip-path:inset(5%  0 78% 0); transform:translate(-3px,0); filter:hue-rotate(0deg)   brightness(1.5); }
+          50% { opacity:0; } 100% { opacity:0; }
         }
 
-        /* overlay text */
+        /* bottom overlay on hover */
         .hp-overlay {
           position: absolute; inset: 0; pointer-events: none;
           display: flex; flex-direction: column;
           align-items: center; justify-content: flex-end;
-          padding-bottom: 16px; gap: 5px;
+          padding: 0 10px 12px; gap: 4px;
           opacity: 0; transition: opacity 0.3s;
-          background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 60%);
+          background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
         }
-        .hp-frame:hover .hp-overlay { opacity: 1; }
+        .hp-outer:hover .hp-overlay { opacity: 1; }
         .hp-overlay span {
           font-family: var(--font); font-size: 9px; font-weight: 700;
           color: var(--green); letter-spacing: 0.15em;
           text-shadow: var(--glow-green);
         }
 
-        .hp-footer {
+        /* metadata rows */
+        .hp-meta-top {
+          display: flex; justify-content: space-between; align-items: center;
+          margin-bottom: 8px; font-family: var(--font);
+          font-size: 9px; letter-spacing: 0.1em;
+        }
+        .hp-meta-bot {
           display: flex; justify-content: space-between;
-          font-size: 9px; color: var(--text-muted);
-          letter-spacing: 0.08em; margin-top: 6px;
-          font-family: var(--font);
+          margin-top: 8px; font-family: var(--font);
+          font-size: 9px; letter-spacing: 0.08em; color: var(--text-muted);
+        }
+        .hp-dot {
+          width: 6px; height: 6px; border-radius: 50%;
+          background: var(--green);
+          box-shadow: var(--glow-green);
+          animation: pulse-dot 2s ease-in-out infinite;
+          display: inline-block; margin-right: 5px;
         }
       `}</style>
 
       <div className="hp-wrap">
-        <div className="hp-label">
-          <span>OPERATOR_ID.png</span>
-          <span>■ VERIFIED</span>
+        {/* top meta */}
+        <div className="hp-meta-top">
+          <span style={{ color: 'var(--green)', fontSize: 9 }}>OPERATOR_ID.png</span>
+          <span style={{ color: 'var(--text-muted)', fontSize: 9 }}>
+            <span className="hp-dot" />ONLINE
+          </span>
         </div>
-        <div className="hp-frame">
-          <img src="/profile.jpg" alt="Ashirwad Bhatt" className="hp-img" />
-          <div className="hp-scanlines" />
-          <div className="hp-sweep" />
-          <img src="/profile.jpg" alt="" aria-hidden="true" className="hp-g1" />
-          <img src="/profile.jpg" alt="" aria-hidden="true" className="hp-g2" />
-          <div className="hp-overlay">
-            <span>[ IDENTITY_VERIFIED ]</span>
-            <span>ASHIRWAD_BHATT.exe</span>
+
+        {/* outer bracket container */}
+        <div className="hp-outer">
+          <div className="hp-cb">
+            <div className="hp-frame">
+              <img src="/profile.jpg" alt="Ashirwad Bhatt" className="hp-img" />
+              <div className="hp-tint" />
+              <div className="hp-scanlines" />
+              <div className="hp-sweep" />
+              <img src="/profile.jpg" alt="" aria-hidden="true" className="hp-g1" />
+              <img src="/profile.jpg" alt="" aria-hidden="true" className="hp-g2" />
+              <div className="hp-overlay">
+                <span>[ IDENTITY_VERIFIED ]</span>
+                <span>ASHIRWAD_BHATT.exe</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="hp-footer">
+
+        {/* bottom meta */}
+        <div className="hp-meta-bot">
           <span>19.07°N 72.87°E</span>
-          <span>SYS: ONLINE</span>
+          <span style={{ color: 'var(--green)' }}>SYS: STABLE</span>
         </div>
       </div>
     </>
@@ -263,7 +308,7 @@ export default function Hero({ active }) {
       </div>
 
       {/* main content */}
-      <div style={{ position: 'relative', zIndex: 1, maxWidth: 1100, display: 'flex', alignItems: 'center', gap: 'clamp(32px, 6vw, 80px)' }}>
+      <div style={{ position: 'relative', zIndex: 1, maxWidth: 1100, display: 'flex', alignItems: 'flex-start', gap: 'clamp(32px, 6vw, 72px)', paddingTop: 8 }}>
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontSize: 11, color: 'var(--green)', letterSpacing: '0.2em', marginBottom: 16 }}>
           // PORTFOLIO_OS_V2.0 &nbsp;·&nbsp; CLEARANCE: PUBLIC
